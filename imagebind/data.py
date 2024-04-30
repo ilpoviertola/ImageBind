@@ -83,9 +83,7 @@ def load_and_transform_vision_data(image_paths, device):
 
     data_transform = transforms.Compose(
         [
-            transforms.Resize(
-                224, interpolation=transforms.InterpolationMode.BICUBIC
-            ),
+            transforms.Resize(224, interpolation=transforms.InterpolationMode.BICUBIC),
             transforms.CenterCrop(224),
             transforms.ToTensor(),
             transforms.Normalize(
@@ -94,7 +92,7 @@ def load_and_transform_vision_data(image_paths, device):
             ),
         ]
     )
-    
+
     for image_path in image_paths:
         with open(image_path, "rb") as fopen:
             image = Image.open(fopen).convert("RGB")
@@ -315,7 +313,7 @@ def load_and_transform_video_data(
             video_path,
             decoder="decord",
             decode_audio=False,
-            **{"sample_rate": sample_rate},
+            # **{"sample_rate": sample_rate},
         )
 
         all_clips_timepoints = get_clip_timepoints(clip_sampler, video.duration)
